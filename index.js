@@ -44,6 +44,8 @@ process.on('uncaughtException', err => {
 // how write files 
 const fs = require('fs');
 const path = require('path');
+
+console.log("Hello Bro👋");
 // here we don't need to have 'utf8' which is provided default in that place we need to have the content of the file like text content...etc and here we only (err) no (data) parameter here ofcourse we're only writing file
 /*
 fs.writeFile(path.join(__dirname, 'files', 'reply.txt'), 'Hello, Nice to meet you', (err) => {
@@ -52,12 +54,26 @@ fs.writeFile(path.join(__dirname, 'files', 'reply.txt'), 'Hello, Nice to meet yo
 }) */
 
 // we can also write files using appednFile method which is usually used for updating content within the file but it is to show it still can create a new file
+/*
 fs.appendFile(path.join(__dirname, 'files', 'reply2.txt'), 'Hello, its jack again!', (err) => {
     if (err) throw err;
     console.log("writing file is complete!");
+}); */
+
+// if it's necessary to update a file it is better to write or chain appendFile method inside writeFile method*****
+// and there is another method called rename which can be used to re-name the file**
+fs.writeFile(path.join(__dirname, 'files', 'reply3.txt'), 'Hi, jack here again!', (err) => {
+    if (err) throw err;
+    console.log("write file complete!");
+    fs.appendFile(path.join(__dirname, 'files', 'reply3.txt'), 'n\n\hello bro nice to meet you.', (err) => {
+        if (err) throw err;
+        console.log("appendFile complete!");
+        fs.rename(path.join(__dirname, 'files', 'reply3.txt'), 'Newreply.txt', (err) => {
+            if (err) throw err;
+            console.log("rename complete!");
+        });
+    });
 });
-
-
 
 
 
