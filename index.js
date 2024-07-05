@@ -42,11 +42,11 @@ process.on('uncaughtException', err => {
 */
 //==========================================================//
 // how write files 
-
+/*
 const fs = require('fs');
 const path = require('path');
 
-console.log("Hello Bro👋"); 
+console.log("Hello Bro👋");  */
 // here we don't need to have 'utf8' which is provided default in that place we need to have the content of the file like text content...etc and here we only (err) no (data) parameter here ofcourse we're only writing file
 /*
 fs.writeFile(path.join(__dirname, 'files', 'reply.txt'), 'Hello, Nice to meet you', (err) => {
@@ -76,7 +76,7 @@ fs.writeFile(path.join(__dirname, 'files', 'reply3.txt'), 'Hi, jack here again!'
         });
     });
 }); */
-
+/*
 fs.writeFile(path.join(__dirname, 'files', 'reply4.txt'), 'Hi, its xian here', (err) => {
     if (err) throw err;
     console.log("write complete!");
@@ -90,25 +90,37 @@ fs.writeFile(path.join(__dirname, 'files', 'reply4.txt'), 'Hi, its xian here', (
             console.log("rename complete!");
         })
     })
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}) */
+//--------------------------------------------------------------------------------------------------//
 // as we can the console.log("hello bro") is executed first then the fs. modules are execute this is async ===>> like node it telling you goahead I'll catch up later!! we are fimiliar with async/await in vanilla javascript***
 // the above chain is kinda a callback hell to prevent or to avoid these callback hell we need to use async/await in node 
 // how to use async/await in node:
+const fsPromises = require('fs').promises;
+const path = require('path');
+
+const fileOps = async () => {
+    try {
+        const data = await fsPromises.readFile(path.join(__dirname, 'newfiles', 'hi.txt'), 'utf8' /*no need to for callback here*/);
+        console.log(data);
+        await fsPromises.writeFile(path.join(__dirname, 'newfiles', 'PromiseReply.txt'), data);
+        await fsPromises.appendFile(path.join(__dirname, 'newfiles', 'PromiseReply.txt'), '\n\n hello bro nice to meet you🤝');
+        await fsPromises.rename(path.join(__dirname, 'newfiles', 'PromiseReply.txt'), path.join(__dirname, 'newfiles', 'newPromise.txt'));
+        const newData = await fsPromises.readFile(path.join(__dirname, 'newfiles', 'newPromise.txt'), 'utf8');
+        console.log(newData);
+    } catch (err) {
+        console.error(err);
+        // you can also throw an error;
+    }
+}
+fileOps();
+
+
+
+
+
+
+
+
 
 
 
