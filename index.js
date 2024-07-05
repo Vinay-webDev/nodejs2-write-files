@@ -42,10 +42,11 @@ process.on('uncaughtException', err => {
 */
 //==========================================================//
 // how write files 
+
 const fs = require('fs');
 const path = require('path');
 
-console.log("Hello Bro👋");
+console.log("Hello Bro👋"); 
 // here we don't need to have 'utf8' which is provided default in that place we need to have the content of the file like text content...etc and here we only (err) no (data) parameter here ofcourse we're only writing file
 /*
 fs.writeFile(path.join(__dirname, 'files', 'reply.txt'), 'Hello, Nice to meet you', (err) => {
@@ -62,6 +63,7 @@ fs.appendFile(path.join(__dirname, 'files', 'reply2.txt'), 'Hello, its jack agai
 
 // if it's necessary to update a file it is better to write or chain appendFile method inside writeFile method*****
 // and there is another method called rename which can be used to re-name the file**
+/*
 fs.writeFile(path.join(__dirname, 'files', 'reply3.txt'), 'Hi, jack here again!', (err) => {
     if (err) throw err;
     console.log("write file complete!");
@@ -73,9 +75,40 @@ fs.writeFile(path.join(__dirname, 'files', 'reply3.txt'), 'Hi, jack here again!'
             console.log("rename complete!");
         });
     });
-});
+}); */
+
+fs.writeFile(path.join(__dirname, 'files', 'reply4.txt'), 'Hi, its xian here', (err) => {
+    if (err) throw err;
+    console.log("write complete!");
+
+    fs.appendFile(path.join(__dirname, 'files', 'reply4.txt'), '\n\n helle bro nice to meet you🤝', (err) => {
+        if (err) throw err;
+        console.log("append complete!");
+
+        fs.rename(path.join(__dirname, 'files', 'reply4.txt'), path.join(__dirname, 'files', 'Newreply111.txt'), (err) => {
+            if (err) throw err;
+            console.log("rename complete!");
+        })
+    })
+})
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+// as we can the console.log("hello bro") is executed first then the fs. modules are execute this is async ===>> like node it telling you goahead I'll catch up later!! we are fimiliar with async/await in vanilla javascript***
+// the above chain is kinda a callback hell to prevent or to avoid these callback hell we need to use async/await in node 
+// how to use async/await in node:
 
 
 
