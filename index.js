@@ -45,12 +45,17 @@ process.on('uncaughtException', err => {
 const fs = require('fs');
 const path = require('path');
 // here we don't need to have 'utf8' which is provided default in that place we need to have the content of the file like text content...etc and here we only (err) no (data) parameter here ofcourse we're only writing file
+/*
 fs.writeFile(path.join(__dirname, 'files', 'reply.txt'), 'Hello, Nice to meet you', (err) => {
     if (err) throw err;
     console.log("writing file complete!");
-})
+}) */
 
-
+// we can also write files using appednFile method which is usually used for updating content within the file but it is to show it still can create a new file
+fs.appendFile(path.join(__dirname, 'files', 'reply2.txt'), 'Hello, its jack again!', (err) => {
+    if (err) throw err;
+    console.log("writing file is complete!");
+});
 
 
 
