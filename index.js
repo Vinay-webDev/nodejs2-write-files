@@ -116,6 +116,7 @@ const fileOps = async () => {
 fileOps(); */
 
 //unlick() ===> used to delete file this method is also available in only fs module aswell*** 
+/*
 const fsPromises = require('fs').promises;
 const path = require('path');
 
@@ -133,7 +134,7 @@ const fileOpsNew = async () => {
         console.error(err);
     }
 }
-fileOpsNew();
+fileOpsNew(); */
 
 
 
